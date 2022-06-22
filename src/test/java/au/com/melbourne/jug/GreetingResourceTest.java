@@ -18,4 +18,15 @@ public class GreetingResourceTest {
              .body(is("Hello from RESTEasy Reactive"));
     }
 
+    @Test
+    public void testTodosEndpoint() {
+        given()
+          .when().get("/todo")
+          .then()
+             .log().body()
+             .statusCode(200)
+             .body("title[0]", is("Prepare Demo"))
+             .body("description[0]", is("Prepare Quarkus Demo for Melbourne JUG"));
+    }
+    
 }
